@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Youtube_DL_Interface
@@ -19,32 +20,43 @@ namespace Youtube_DL_Interface
             audioformat.Items.Add("opus");
             audioformat.Items.Add("vorbis");
             audioformat.Items.Add("wav");
+
+            folderInput.Text = Directory.GetCurrentDirectory();
         }
         //strings needed by start_download_Click() and updatebutton_Click()
         public static string audioparam;
         public static string cmdvanish;
         public static string keeporiginal;
+        public static string folder;
 
         private void start_download_Click(object sender, EventArgs e)
         {
-            //Get the executable name. This is kinda important.
-            string targetprgname = targetExecutable.Text;
-            //Get the URL provided to us
-            string URL = urlinput.Text;
+            //first, go into target directory.
+            folder = folderInput.Text;
+            if (Directory.Exists(folder))
+            {
+                //Get the executable name. This is kinda important.
+                string targetprgname = targetExecutable.Text;
+                //Get the URL provided to us
+                string URL = urlinput.Text;
 
-            //build the command by adding parameters
-            audioparam = ("-x --audio-format " + audioformat.Text + " --audio-quality " + audioquality.Value); //get audio settings
-            if (cmdremainstate.Checked) { cmdvanish = "/K"; } //If they want the window to remain open afterwards, use /K.
-            else { cmdvanish = "/C"; } //Otherwise /C.
-            if (keepOriginal.Checked) { keeporiginal = " -k "; } //keeps original video file
-            else { keeporiginal = " "; } //doesn't. this is default.
+                //build the command by adding parameters
+                audioparam = ("-x --audio-format " + audioformat.Text + " --audio-quality " + audioquality.Value); //get audio settings
+                if (cmdremainstate.Checked) { cmdvanish = "/K"; } //If they want the window to remain open afterwards, use /K.
+                else { cmdvanish = "/C"; } //Otherwise /C.
+                if (keepOriginal.Checked) { keeporiginal = " -k "; } //keeps original video file
+                else { keeporiginal = " "; } //doesn't. this is default.
 
-            //This is the generated command from the data.
-            string arguments = (" " + cmdvanish + " \"" + targetprgname + keeporiginal + audioparam + " " + URL + " && echo Completed download! && pause\"");
+                //This is the generated command from the data.
+                string arguments = (" " + cmdvanish + " \"" + targetprgname + keeporiginal + audioparam + " " + URL + " && echo Completed download! && pause\"");
 
-            MessageBox.Show(arguments);
-            //Now to execute it
-            executeShellCommand("cmd.exe", arguments);
+                //Now to execute it
+                executeShellCommand("cmd.exe", arguments);
+            }
+            else
+            {
+                MessageBox.Show("The specified folder does not exist.");
+            }
         }
 
         public void executeShellCommand(string command, string arguments)
@@ -67,6 +79,13 @@ namespace Youtube_DL_Interface
             //create arguments
             string arguments = (" " + cmdvanish + " \"" + targetprgname + " -U && echo Completed upgrade! && pause\"");
             executeShellCommand("cmd.exe", arguments);
+        }
+
+        private void urlinput_TextChanged(object sender, EventArgs e)
+        {
+            //Since the user will likely by typing in the folder path, there will be errors preventing us from changing directories.
+            try{Directory.SetCurrentDirectory(urlinput.Text);}
+            catch (Exception){}
         }
     }
 }

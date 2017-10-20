@@ -10,7 +10,8 @@ You will need youtube-dl (provided in Executables folder), which can be download
 You enter a URL at the top, select audio format and quality, 
 press start and it will begin downloading! If youtube-dl is called something else, then there is a box for that too.
 If you want the opened command window to remain open after the command is done (mainly used if youtube-dl is not a valid command), 
-there is a checkbox for that too.
+there is a checkbox for that too. If you want to specify an existing folder to download into, you may do that by pasting the folder
+path into the Folder input.
 
 ## Disclaimer
 I did NOT make youtube-dl, ffmpeg or any other associated program. I have simply made an interface for these programs.
