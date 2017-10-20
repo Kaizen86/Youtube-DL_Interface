@@ -35,6 +35,8 @@ namespace Youtube_DL_Interface
             folder = folderInput.Text;
             if (Directory.Exists(folder))
             {
+                Directory.SetCurrentDirectory(folder);
+
                 //Get the executable name. This is kinda important.
                 string targetprgname = targetExecutable.Text;
                 //Get the URL provided to us
@@ -48,7 +50,7 @@ namespace Youtube_DL_Interface
                 else { keeporiginal = " "; } //doesn't. this is default.
 
                 //This is the generated command from the data.
-                string arguments = (" " + cmdvanish + " \"" + targetprgname + keeporiginal + audioparam + " " + URL + " && echo Completed download! && pause\"");
+                string arguments = (" " + cmdvanish + " \"echo Saving into %cd% && " + targetprgname + keeporiginal + audioparam + " " + URL + " && echo Completed download! && pause\"");
 
                 //Now to execute it
                 executeShellCommand("cmd.exe", arguments);
