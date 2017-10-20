@@ -48,9 +48,9 @@
             // 
             this.start_download.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.start_download.Location = new System.Drawing.Point(12, 284);
+            this.start_download.Location = new System.Drawing.Point(12, 336);
             this.start_download.Name = "start_download";
-            this.start_download.Size = new System.Drawing.Size(307, 71);
+            this.start_download.Size = new System.Drawing.Size(310, 71);
             this.start_download.TabIndex = 0;
             this.start_download.Text = "START";
             this.start_download.UseVisualStyleBackColor = true;
@@ -60,7 +60,7 @@
             // 
             this.audioformat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.audioformat.FormattingEnabled = true;
-            this.audioformat.Location = new System.Drawing.Point(189, 44);
+            this.audioformat.Location = new System.Drawing.Point(192, 44);
             this.audioformat.Name = "audioformat";
             this.audioformat.Size = new System.Drawing.Size(121, 28);
             this.audioformat.TabIndex = 1;
@@ -86,7 +86,7 @@
             // targetExecutable
             // 
             this.targetExecutable.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.targetExecutable.Location = new System.Drawing.Point(12, 252);
+            this.targetExecutable.Location = new System.Drawing.Point(12, 304);
             this.targetExecutable.Name = "targetExecutable";
             this.targetExecutable.Size = new System.Drawing.Size(100, 26);
             this.targetExecutable.TabIndex = 4;
@@ -98,14 +98,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.urlinput.Location = new System.Drawing.Point(12, 12);
             this.urlinput.Name = "urlinput";
-            this.urlinput.Size = new System.Drawing.Size(250, 26);
+            this.urlinput.Size = new System.Drawing.Size(253, 26);
             this.urlinput.TabIndex = 5;
             // 
             // cmdremainstate
             // 
             this.cmdremainstate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cmdremainstate.AutoSize = true;
-            this.cmdremainstate.Location = new System.Drawing.Point(12, 222);
+            this.cmdremainstate.Location = new System.Drawing.Point(12, 274);
             this.cmdremainstate.Name = "cmdremainstate";
             this.cmdremainstate.Size = new System.Drawing.Size(249, 24);
             this.cmdremainstate.TabIndex = 6;
@@ -115,7 +115,7 @@
             // updatebutton
             // 
             this.updatebutton.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.updatebutton.Location = new System.Drawing.Point(12, 139);
+            this.updatebutton.Location = new System.Drawing.Point(12, 165);
             this.updatebutton.MinimumSize = new System.Drawing.Size(111, 55);
             this.updatebutton.Name = "updatebutton";
             this.updatebutton.Size = new System.Drawing.Size(113, 55);
@@ -128,7 +128,7 @@
             // 
             this.audioFormatlabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.audioFormatlabel.AutoSize = true;
-            this.audioFormatlabel.Location = new System.Drawing.Point(219, 80);
+            this.audioFormatlabel.Location = new System.Drawing.Point(222, 80);
             this.audioFormatlabel.Name = "audioFormatlabel";
             this.audioFormatlabel.Size = new System.Drawing.Size(100, 20);
             this.audioFormatlabel.TabIndex = 8;
@@ -147,7 +147,7 @@
             // 
             this.programNameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.programNameLabel.AutoSize = true;
-            this.programNameLabel.Location = new System.Drawing.Point(109, 255);
+            this.programNameLabel.Location = new System.Drawing.Point(109, 307);
             this.programNameLabel.Name = "programNameLabel";
             this.programNameLabel.Size = new System.Drawing.Size(113, 20);
             this.programNameLabel.TabIndex = 10;
@@ -166,7 +166,7 @@
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(268, 15);
+            this.label1.Location = new System.Drawing.Point(271, 15);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(42, 20);
             this.label1.TabIndex = 12;
@@ -176,7 +176,7 @@
             // 
             this.keepOriginal.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.keepOriginal.AutoSize = true;
-            this.keepOriginal.Location = new System.Drawing.Point(185, 155);
+            this.keepOriginal.Location = new System.Drawing.Point(188, 181);
             this.keepOriginal.Name = "keepOriginal";
             this.keepOriginal.Size = new System.Drawing.Size(129, 24);
             this.keepOriginal.TabIndex = 13;
@@ -187,7 +187,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(322, 358);
+            this.ClientSize = new System.Drawing.Size(325, 410);
             this.Controls.Add(this.keepOriginal);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.audioQualitylabel2);
