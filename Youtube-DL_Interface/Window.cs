@@ -19,28 +19,11 @@ namespace Youtube_DL_Interface
             audioformat.Items.Add("opus");
             audioformat.Items.Add("vorbis");
             audioformat.Items.Add("wav");
-
-            //disable audioformat and audioquality on startup, so by default you download video.
-            audioformat.Enabled = false;
-            audioquality.Enabled = false;
-        }
-        private void onlyaudio_CheckedChanged(object sender, EventArgs e)
-        {
-            //Enables/disables audio extraction options
-            if (onlyaudio.Checked)
-            {
-                audioformat.Enabled = true;
-                audioquality.Enabled = true;
-            }
-            else
-            {
-                audioquality.Enabled = false;
-                audioformat.Enabled = false;
-            }
         }
         //strings needed by start_download_Click() and updatebutton_Click()
         public static string audioparam;
         public static string cmdvanish;
+        public static string keeporiginal;
 
         private void start_download_Click(object sender, EventArgs e)
         {
@@ -50,12 +33,16 @@ namespace Youtube_DL_Interface
             string URL = urlinput.Text;
 
             //build the command by adding parameters
-            if (onlyaudio.Checked) { audioparam = ("-x --audio-format " + audioformat.Text + " --audio-quality " + audioquality.Value); }
+            audioparam = ("-x --audio-format " + audioformat.Text + " --audio-quality " + audioquality.Value); //get audio settings
             if (cmdremainstate.Checked) { cmdvanish = "/K"; } //If they want the window to remain open afterwards, use /K.
             else { cmdvanish = "/C"; } //Otherwise /C.
+            if (keepOriginal.Checked) { keeporiginal = " -k "; } //keeps original video file
+            else { keeporiginal = " "; } //doesn't. this is default.
 
             //This is the generated command from the data.
-            string arguments = (" " + cmdvanish + " \"" + targetprgname + " -k " + audioparam + " " + URL + " && echo Completed download! && pause\"");
+            string arguments = (" " + cmdvanish + " \"" + targetprgname + keeporiginal + audioparam + " " + URL + " && echo Completed download! && pause\"");
+
+            MessageBox.Show(arguments);
             //Now to execute it
             executeShellCommand("cmd.exe", arguments);
         }
