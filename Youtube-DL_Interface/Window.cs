@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Youtube_DL_Interface
@@ -45,7 +38,7 @@ namespace Youtube_DL_Interface
                 audioformat.Enabled = false;
             }
         }
-        //strings needed by start_download_Click()
+        //strings needed by start_download_Click() and updatebutton_Click()
         public static string audioparam;
         public static string cmdvanish;
 
@@ -62,10 +55,11 @@ namespace Youtube_DL_Interface
             else { cmdvanish = "/C"; } //Otherwise /C.
 
             //This is the generated command from the data.
-            string arguments = (" " + cmdvanish + " \"" + targetprgname + " " + audioparam + " " + URL + " && echo Completed download! && pause\"");
+            string arguments = (" " + cmdvanish + " \"" + targetprgname + " -k " + audioparam + " " + URL + " && echo Completed download! && pause\"");
             //Now to execute it
             executeShellCommand("cmd.exe", arguments);
         }
+
         public void executeShellCommand(string command, string arguments)
         {
             //MessageBox.Show(command + arguments); //Debugging purposes
@@ -75,5 +69,17 @@ namespace Youtube_DL_Interface
             p.Start();
         }
 
+        private void updatebutton_Click(object sender, EventArgs e)
+        {
+            //get executable name
+            string targetprgname = targetExecutable.Text;
+
+            if (cmdremainstate.Checked) { cmdvanish = "/K"; } //If they want the window to remain open afterwards, use /K.
+            else { cmdvanish = "/C"; } //Otherwise /C.
+
+            //create arguments
+            string arguments = (" " + cmdvanish + " \"" + targetprgname + " -U && echo Completed upgrade! && pause\"");
+            executeShellCommand("cmd.exe", arguments);
+        }
     }
 }

@@ -35,6 +35,7 @@
             this.targetExecutable = new System.Windows.Forms.TextBox();
             this.urlinput = new System.Windows.Forms.TextBox();
             this.cmdremainstate = new System.Windows.Forms.CheckBox();
+            this.updatebutton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.audioquality)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,9 +53,9 @@
             // 
             // audioformat
             // 
-            this.audioformat.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.audioformat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.audioformat.FormattingEnabled = true;
-            this.audioformat.Location = new System.Drawing.Point(320, 70);
+            this.audioformat.Location = new System.Drawing.Point(320, 44);
             this.audioformat.Name = "audioformat";
             this.audioformat.Size = new System.Drawing.Size(121, 28);
             this.audioformat.TabIndex = 1;
@@ -62,8 +63,9 @@
             // 
             // audioquality
             // 
-            this.audioquality.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.audioquality.Location = new System.Drawing.Point(192, 71);
+            this.audioquality.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.audioquality.Location = new System.Drawing.Point(194, 44);
             this.audioquality.Maximum = new decimal(new int[] {
             9,
             0,
@@ -80,9 +82,8 @@
             // 
             // onlyaudio
             // 
-            this.onlyaudio.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.onlyaudio.AutoSize = true;
-            this.onlyaudio.Location = new System.Drawing.Point(12, 72);
+            this.onlyaudio.Location = new System.Drawing.Point(12, 44);
             this.onlyaudio.Name = "onlyaudio";
             this.onlyaudio.Size = new System.Drawing.Size(181, 24);
             this.onlyaudio.TabIndex = 3;
@@ -119,11 +120,23 @@
             this.cmdremainstate.Text = "Keep Command Window open";
             this.cmdremainstate.UseVisualStyleBackColor = true;
             // 
+            // updatebutton
+            // 
+            this.updatebutton.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.updatebutton.Location = new System.Drawing.Point(330, 163);
+            this.updatebutton.Name = "updatebutton";
+            this.updatebutton.Size = new System.Drawing.Size(111, 55);
+            this.updatebutton.TabIndex = 7;
+            this.updatebutton.Text = "Update Youtube-DL";
+            this.updatebutton.UseVisualStyleBackColor = true;
+            this.updatebutton.Click += new System.EventHandler(this.updatebutton_Click);
+            // 
             // Window
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(453, 408);
+            this.Controls.Add(this.updatebutton);
             this.Controls.Add(this.cmdremainstate);
             this.Controls.Add(this.urlinput);
             this.Controls.Add(this.audioquality);
@@ -148,6 +161,7 @@
         private System.Windows.Forms.TextBox targetExecutable;
         private System.Windows.Forms.TextBox urlinput;
         private System.Windows.Forms.CheckBox cmdremainstate;
+        private System.Windows.Forms.Button updatebutton;
     }
 }
 
