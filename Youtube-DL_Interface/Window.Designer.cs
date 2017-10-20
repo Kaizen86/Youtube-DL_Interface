@@ -35,6 +35,7 @@
             this.targetExecutable = new System.Windows.Forms.TextBox();
             this.urlinput = new System.Windows.Forms.TextBox();
             this.cmdremainstate = new System.Windows.Forms.CheckBox();
+            this.updatedownloader = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.audioquality)).BeginInit();
             this.SuspendLayout();
             // 
@@ -42,9 +43,9 @@
             // 
             this.start_download.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.start_download.Location = new System.Drawing.Point(12, 334);
+            this.start_download.Location = new System.Drawing.Point(12, 323);
             this.start_download.Name = "start_download";
-            this.start_download.Size = new System.Drawing.Size(438, 71);
+            this.start_download.Size = new System.Drawing.Size(426, 71);
             this.start_download.TabIndex = 0;
             this.start_download.Text = "START";
             this.start_download.UseVisualStyleBackColor = true;
@@ -52,9 +53,9 @@
             // 
             // audioformat
             // 
-            this.audioformat.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.audioformat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.audioformat.FormattingEnabled = true;
-            this.audioformat.Location = new System.Drawing.Point(320, 70);
+            this.audioformat.Location = new System.Drawing.Point(308, 64);
             this.audioformat.Name = "audioformat";
             this.audioformat.Size = new System.Drawing.Size(121, 28);
             this.audioformat.TabIndex = 1;
@@ -62,15 +63,16 @@
             // 
             // audioquality
             // 
-            this.audioquality.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.audioquality.Location = new System.Drawing.Point(192, 71);
+            this.audioquality.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.audioquality.Location = new System.Drawing.Point(192, 65);
             this.audioquality.Maximum = new decimal(new int[] {
             9,
             0,
             0,
             0});
             this.audioquality.Name = "audioquality";
-            this.audioquality.Size = new System.Drawing.Size(120, 26);
+            this.audioquality.Size = new System.Drawing.Size(108, 26);
             this.audioquality.TabIndex = 2;
             this.audioquality.Value = new decimal(new int[] {
             5,
@@ -80,19 +82,19 @@
             // 
             // onlyaudio
             // 
-            this.onlyaudio.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.onlyaudio.AutoSize = true;
-            this.onlyaudio.Location = new System.Drawing.Point(12, 72);
+            this.onlyaudio.Location = new System.Drawing.Point(12, 66);
             this.onlyaudio.Name = "onlyaudio";
             this.onlyaudio.Size = new System.Drawing.Size(181, 24);
             this.onlyaudio.TabIndex = 3;
             this.onlyaudio.Text = "Only download audio";
             this.onlyaudio.UseVisualStyleBackColor = true;
+            this.onlyaudio.CheckedChanged += new System.EventHandler(this.onlyaudio_CheckedChanged);
             // 
             // targetExecutable
             // 
             this.targetExecutable.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.targetExecutable.Location = new System.Drawing.Point(12, 302);
+            this.targetExecutable.Location = new System.Drawing.Point(12, 291);
             this.targetExecutable.Name = "targetExecutable";
             this.targetExecutable.Size = new System.Drawing.Size(100, 26);
             this.targetExecutable.TabIndex = 4;
@@ -104,7 +106,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.urlinput.Location = new System.Drawing.Point(12, 12);
             this.urlinput.Name = "urlinput";
-            this.urlinput.Size = new System.Drawing.Size(429, 26);
+            this.urlinput.Size = new System.Drawing.Size(417, 26);
             this.urlinput.TabIndex = 5;
             // 
             // cmdremainstate
@@ -112,18 +114,30 @@
             this.cmdremainstate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdremainstate.AutoSize = true;
-            this.cmdremainstate.Location = new System.Drawing.Point(129, 304);
+            this.cmdremainstate.Location = new System.Drawing.Point(129, 293);
             this.cmdremainstate.Name = "cmdremainstate";
             this.cmdremainstate.Size = new System.Drawing.Size(249, 24);
             this.cmdremainstate.TabIndex = 6;
             this.cmdremainstate.Text = "Keep Command Window open";
             this.cmdremainstate.UseVisualStyleBackColor = true;
             // 
+            // updatedownloader
+            // 
+            this.updatedownloader.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.updatedownloader.Location = new System.Drawing.Point(334, 174);
+            this.updatedownloader.Name = "updatedownloader";
+            this.updatedownloader.Size = new System.Drawing.Size(104, 60);
+            this.updatedownloader.TabIndex = 7;
+            this.updatedownloader.Text = "Update YoutubeDL";
+            this.updatedownloader.UseVisualStyleBackColor = true;
+            this.updatedownloader.Click += new System.EventHandler(this.updatedownloader_Click);
+            // 
             // Window
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(453, 408);
+            this.ClientSize = new System.Drawing.Size(441, 397);
+            this.Controls.Add(this.updatedownloader);
             this.Controls.Add(this.cmdremainstate);
             this.Controls.Add(this.urlinput);
             this.Controls.Add(this.audioquality);
@@ -131,6 +145,7 @@
             this.Controls.Add(this.start_download);
             this.Controls.Add(this.onlyaudio);
             this.Controls.Add(this.targetExecutable);
+            this.MinimumSize = new System.Drawing.Size(392, 407);
             this.Name = "Window";
             this.Text = "Youtube-DL Interface";
             ((System.ComponentModel.ISupportInitialize)(this.audioquality)).EndInit();
@@ -148,6 +163,7 @@
         private System.Windows.Forms.TextBox targetExecutable;
         private System.Windows.Forms.TextBox urlinput;
         private System.Windows.Forms.CheckBox cmdremainstate;
+        private System.Windows.Forms.Button updatedownloader;
     }
 }
 
