@@ -1,4 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Youtube_DL_Interface
@@ -55,7 +62,7 @@ namespace Youtube_DL_Interface
             else { cmdvanish = "/C"; } //Otherwise /C.
 
             //This is the generated command from the data.
-            string arguments = (" " + cmdvanish + " \"" + targetprgname + " -k " + audioparam + " " + URL + " && echo Completed download! && pause\"");
+            string arguments = (" " + cmdvanish + " \"" + targetprgname + " " + audioparam + " " + URL + " && echo Completed download! && pause\"");
             //Now to execute it
             executeShellCommand("cmd.exe", arguments);
         }
@@ -68,17 +75,5 @@ namespace Youtube_DL_Interface
             p.Start();
         }
 
-        private void updatedownloader_Click(object sender, EventArgs e)
-        {
-            //get executable name
-            string targetprgname = targetExecutable.Text;
-
-            if (cmdremainstate.Checked) { cmdvanish = "/K"; } //If they want the window to remain open afterwards, use /K.
-            else { cmdvanish = "/C"; } //Otherwise /C.
-
-            //create arguments
-            string arguments = (" " + cmdvanish + " \"" + targetprgname + " -U && echo Completed upgrade! && pause\"");
-            executeShellCommand("cmd.exe", arguments);
-        }
     }
 }
