@@ -50,7 +50,7 @@ namespace Youtube_DL_Interface
                 else { keeporiginal = " "; } //doesn't. this is default.
 
                 //This is the generated command from the data.
-                string arguments = (" " + cmdvanish + " \"echo Saving into %cd% && " + targetprgname + keeporiginal + audioparam + " " + URL + " && echo Completed download! && pause\"");
+                string arguments = (" " + cmdvanish + " \"echo Saving into %cd% && " + targetprgname + keeporiginal + " -o %(title)s.%(ext)s " + audioparam + " " + URL + " && echo Completed download! && pause\"");
 
                 //Now to execute it
                 executeShellCommand("cmd.exe", arguments);
