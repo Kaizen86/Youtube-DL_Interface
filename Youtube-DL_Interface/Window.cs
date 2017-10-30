@@ -1,27 +1,55 @@
 ﻿using System;
 using System.IO;
+using System.Configuration;
 using System.Windows.Forms;
 
 namespace Youtube_DL_Interface
 {
     public partial class Window : Form
     {
+        public string[] audioformats = { "best", "aac", "flac", "mp3", "m4a", "opus", "vorbis", "wav" };
         public Window()
         {
             InitializeComponent();
 
+            try
+            {
+                //Read from the config file
+
+                //Normally I wouldn't assign a variable to hold a string that will never be accessed again, but it is a private variable and will be destroyed upon exitting the try.
+                var folder = ConfigurationManager.AppSettings.Get("folderPath");
+                if (!(folder == "")) //If there is something in the folder path. Otherwise the current directory is used.
+                { folderInput.Text = folder; }
+                else { folderInput.Text = Directory.GetCurrentDirectory(); }
+
+                targetExecutable.Text = ConfigurationManager.AppSettings.Get("nameOfYoutubeDL");
+
+                var quality = Convert.ToInt32(ConfigurationManager.AppSettings.Get("defaultAudioQuality"));
+                if ((!(quality > 9)) && (!(quality < 0))) { audioquality.Value = Convert.ToInt32(ConfigurationManager.AppSettings.Get("defaultAudioQuality")); }
+                else
+                {
+                    audioquality.Value = 5;
+                    MessageBox.Show("Invalid audio quality specification. Using 5.");
+                }
+
+                audioformat.Text = ConfigurationManager.AppSettings.Get("defaultAudioFormat");
+                //Since defaultAudioFormat could be set to something other than the options provided, add a check for this.
+                if (!Array.Exists<string>(audioformats, element => element == audioformat.Text)) {
+                    string audlist = "";
+                    foreach (var i in audioformats) { audlist = audlist + "\n" + i; }
+                    MessageBox.Show("Error: Default audio format is not a valid audio format. Must be one of\n"+audlist);
+                    audioformat.Text = "mp3";
+                }
+                keepOriginal.Checked = Convert.ToBoolean(ConfigurationManager.AppSettings.Get("keepOriginal"));
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show("Error reading from config file: " + err.Message);
+                Environment.Exit(0);
+            }
             //Populate the audioformat list
             audioformat.Items.Clear();
-            audioformat.Items.Add("best");
-            audioformat.Items.Add("aac");
-            audioformat.Items.Add("flac");
-            audioformat.Items.Add("mp3");
-            audioformat.Items.Add("m4a");
-            audioformat.Items.Add("opus");
-            audioformat.Items.Add("vorbis");
-            audioformat.Items.Add("wav");
-
-            folderInput.Text = Directory.GetCurrentDirectory();
+            foreach (var i in audioformats) { audioformat.Items.Add(i); }
         }
         //strings needed by start_download_Click() and updatebutton_Click()
         public static string audioparam;
