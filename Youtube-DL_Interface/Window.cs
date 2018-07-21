@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Configuration;
 using System.Windows.Forms;
 
 namespace Youtube_DL_Interface
@@ -14,33 +13,32 @@ namespace Youtube_DL_Interface
 
             try
             {
-                //Read from the config file
-
-                //Normally I wouldn't assign a variable to hold a string that will never be accessed again, but it is a private variable and will be destroyed upon exitting the try.
-                var folder = ConfigurationManager.AppSettings.Get("folderPath");
+                //Read the config file and load the settings.
+                var folder = Properties.Settings.Default.folderPath;
                 if (!(folder == "")) //If there is something in the folder path. Otherwise the current directory is used.
                 { folderInput.Text = folder; }
                 else { folderInput.Text = Directory.GetCurrentDirectory(); }
 
-                targetExecutable.Text = ConfigurationManager.AppSettings.Get("nameOfYoutubeDL");
+                targetExecutable.Text = Properties.Settings.Default.nameOfYoutubeDL;
 
-                var quality = Convert.ToInt32(ConfigurationManager.AppSettings.Get("defaultAudioQuality"));
-                if ((!(quality > 9)) && (!(quality < 0))) { audioquality.Value = Convert.ToInt32(ConfigurationManager.AppSettings.Get("defaultAudioQuality")); }
+                var quality = Convert.ToInt32(Properties.Settings.Default.defaultAudioQuality);
+                if ((!(quality > 9)) && (!(quality < 0))) { audioquality.Value = Convert.ToInt32(Properties.Settings.Default.defaultAudioQuality); }
                 else
                 {
                     audioquality.Value = 5;
                     MessageBox.Show("Invalid audio quality specification. Using 5.");
                 }
 
-                audioformat.Text = ConfigurationManager.AppSettings.Get("defaultAudioFormat");
+                audioformat.Text = Properties.Settings.Default.defaultAudioFormat;
                 //Since defaultAudioFormat could be set to something other than the options provided, add a check for this.
-                if (!Array.Exists<string>(audioformats, element => element == audioformat.Text)) {
+                if (!Array.Exists<string>(audioformats, element => element == audioformat.Text))
+                {
                     string audlist = "";
                     foreach (var i in audioformats) { audlist = audlist + "\n" + i; }
-                    MessageBox.Show("Error: Default audio format is not a valid audio format. Must be one of\n"+audlist);
+                    MessageBox.Show("Error: Default audio format is not a valid audio format. Must be one of\n" + audlist);
                     audioformat.Text = "mp3";
                 }
-                keepOriginal.Checked = Convert.ToBoolean(ConfigurationManager.AppSettings.Get("keepOriginal"));
+                keepOriginal.Checked = Properties.Settings.Default.keepOriginal;
             }
             catch (Exception err)
             {
@@ -114,8 +112,31 @@ namespace Youtube_DL_Interface
         private void urlinput_TextChanged(object sender, EventArgs e)
         {
             //Since the user will likely by typing in the folder path, there will be errors preventing us from changing directories.
-            try{Directory.SetCurrentDirectory(urlinput.Text);}
-            catch (Exception){}
+            try { Directory.SetCurrentDirectory(urlinput.Text); }
+            catch (Exception) { }
+        }
+
+        private void openSaveFolder_Click(object sender, EventArgs e)
+        {
+            executeShellCommand("explorer", folderInput.Text);
+        }
+
+        private void optionUpdated(object sender, EventArgs e)
+        {
+            //triggered whenever an option is updated.
+            Properties.Settings.Default.folderPath = folderInput.Text;
+            Properties.Settings.Default.nameOfYoutubeDL = targetExecutable.Text;
+            Properties.Settings.Default.defaultAudioQuality = Convert.ToInt16(audioquality.Value);
+            Properties.Settings.Default.defaultAudioFormat = audioformat.Text;
+            Properties.Settings.Default.keepOriginal = keepOriginal.Checked;
+            Properties.Settings.Default.keepCmdOpen = cmdremainstate.Checked;
+            Properties.Settings.Default.Save();
+        }
+
+        private void browseForFolderButton_Click(object sender, EventArgs e)
+        {
+            browseForFolder.ShowDialog();
+            folderInput.Text = browseForFolder.SelectedPath;
         }
     }
 }
